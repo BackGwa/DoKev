@@ -52,3 +52,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+shelf/
+workspace.xml

@@ -1,5 +1,6 @@
-package DoKev
+package backgwa.dokev
 
+import backgwa.dokev.Debug
 
 /* Main Program */
 fun main() {

@@ -1,9 +1,9 @@
-package DoKev
+package backgwa.dokev
 
 import kotlin.system.exitProcess
 
 
-class debug {
+class Debug {
     var line: Int = 0
     var code: String = ""
     var content: Map<String, String> = emptyMap()

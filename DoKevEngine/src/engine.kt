@@ -6,5 +6,7 @@ import backgwa.dokev.Debug
 fun main() {
     // debugger test
     val debug = Debug()
+
+    debug.PreRegister(0, "DEBUGGER TEST")
     debug.StandardError()
 }

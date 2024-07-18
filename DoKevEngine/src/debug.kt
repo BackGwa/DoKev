@@ -4,22 +4,30 @@ import kotlin.system.exitProcess
 
 
 class Debug {
-    var line: Int = 0
-    var code: String = ""
-    var content: Map<String, String> = emptyMap()
+    val COLOR = mapOf<String, String>(
+        "RED" to "\u001b[31m",
+        "YELLOW" to "\u001b[33m",
+        "GREEN" to "\u001b[32m",
+        "CYAN" to "\u001b[36m",
+        "BOLD" to "\u001b[1m",
+        "RESET" to "\u001b[0m",
+    )
+
+    var target_line: Int = 0
+    var target_code: String = ""
 
     /* Public */
 
-    // Register : 디버그에 필요한 내용을 등록합니다.
-    public fun Register(line: Int, code: String, content: Map<String, String>): Unit {
-        this.line = line
-        this.code = code
-        this.content = content
+    // PreRegister : 디버그 대상을 미리 등록합니다.
+    public fun PreRegister(target_line: Int, target_code: String): Unit {
+        this.target_line = target_line
+        this.target_code = PrettyCode(target_code)
     }
 
     // StandardError : 표준 오류를 출력합니다.
     public fun StandardError(): Unit {
-        println("ERROR!")
+        WriteText("오류: ", color = "RED", bold = true)
+        WriteText(this.target_code, bold = true, newline = true)
         exitProcess(127)
     }
 
@@ -38,11 +46,23 @@ class Debug {
 
     }
 
-
     /* Private */
 
     // PrettyCode : 코드를 깔끔하게 변경하여, 반환합니다.
     private fun PrettyCode(code: String): String {
         return code
+    }
+
+    private fun WriteText(text: String, color: String = "RESET", bold: Boolean = false, newline: Boolean = false): Unit {
+        print(this.COLOR[color])
+        if (bold) print(this.COLOR["BOLD"])
+        print(text)
+        print(this.COLOR["RESET"])
+        if (newline) println()
+    }
+
+    // WriteLine : 라인 정보와 함께 코드와 디버그 내용을 표시합니다.
+    private fun WriteLine(): Unit {
+
     }
 }
